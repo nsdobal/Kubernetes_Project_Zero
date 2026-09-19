@@ -3,6 +3,8 @@ kind: Pod
 metadata:
   name: nginx
   namespace: ndapp
+  labels:
+    app: nginx
 spec:
   containers:
   - name: nginx
@@ -15,6 +17,8 @@ kind: Pod
 metadata:
   name: firefox
   namespace: ndapp
+  labels:
+    app: firefox
 spec:
   containers:
   - name: firefox
