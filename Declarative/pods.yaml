@@ -1,5 +1,19 @@
 apiVersion: v1
 kind: Pod
+metadata:
+  name: firefox
+  namespace: ndapp
+  labels:
+    app: firefox
+spec:
+  containers:
+  - name: firefox
+    image: linuxserver/firefox:1.2404.1
+
+---
+
+apiVersion: v1
+kind: Pod
 
 metadata:
   name: nginx
@@ -12,11 +26,11 @@ spec:
   - name: nginx
     image: nginx
     volumeMounts:
-      - name: az-storage-account
-        mountPath: /nd
+    - name: azure-storage
+      mountPath: /az-storage
   
   volumes:
-  - name: az-storage-account
+  - name: azure-storage
     azureFile:
       secretName: azsecret
       shareName: ndfileshare-20260920
@@ -26,12 +40,23 @@ spec:
 
 apiVersion: v1
 kind: Pod
+
 metadata:
-  name: firefox
+  name: nginx-withpvc
   namespace: ndapp
   labels:
-    app: firefox
+    app: nginx
+
 spec:
   containers:
-    - name: firefox
-      image: linuxserver/firefox:1.2404.1
+  - name: nginx-withpvc
+    image: nginx
+    volumeMounts:
+    - name: pvc-az
+      mountPath: /az-pvc
+  
+  volumes:
+  - name: pvc-az
+    persistentVolumeClaim:
+      claimName: pvc-az
+

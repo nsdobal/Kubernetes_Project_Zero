@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: nd-pv
+  namespace: ndapp
+spec:
+  storageClassName: ""
+  accessModes: 
+    - ReadWriteMany
+  capacity:
+    storage: 100Gi
+  azureFile:
+    readOnly: false
+    secretName: azsecret
+    secretNamespace: ndapp
+    shareName: ndfileshare-20260920
