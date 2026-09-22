@@ -12,5 +12,5 @@ spec:
   azureFile:
     readOnly: false
     secretName: azsecret
-    secretNamespace: ndapp
-    shareName: ndfileshare-20260920
+    secretNamespace: dev
+    shareName: ndfileshare

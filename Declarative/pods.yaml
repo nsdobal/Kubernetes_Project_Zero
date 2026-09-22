@@ -33,7 +33,7 @@ spec:
   - name: azure-storage
     azureFile:
       secretName: azsecret
-      shareName: ndfileshare-20260920
+      shareName: ndfileshare
 
 
 ---
