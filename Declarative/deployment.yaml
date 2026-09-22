@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dep-nginx
+  namespace: dev
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: dep-nginx
+  template:
+    metadata:
+      name: dep-nginx
+      namespace: dev
+      labels:
+        app: dep-nginx
+    spec:
+      containers:
+      - name: dep-nginx
+        image: nginx
+        volumeMounts:
+        - name: dep-pvc
+          mountPath: /nd
+      volumes:
+      - name: dep-pvc
+        persistentVolumeClaim:
+          claimName: pvc-az
+
+
