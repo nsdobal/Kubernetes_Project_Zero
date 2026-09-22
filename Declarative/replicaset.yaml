@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: ReplicaSet
 metadata:
-  name: rs-app
+  name: rs-firefox
   namespace: dev
   labels:
-    app: app-nginx
+    app: rs-firefox
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: app-nginx
+      app: rs-firefox
   template:
     metadata:
-      name: nginx
+      name: firefox
       namespace: dev
       labels:
-        app: app-nginx
+        app: rs-firefox
     spec:
       volumes:
       - name: app-nginx-volume
@@ -23,7 +23,7 @@ spec:
           claimName: pvc-az
       containers:
       - name: app-nginx
-        image: nginx
+        image: linuxserver/firefox:1.2404.1
         volumeMounts:
         - name: app-nginx-volume
           mountPath : /app-nd
